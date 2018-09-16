@@ -33,6 +33,8 @@ void Camera::draw() {
       tile->draw(tileX, tileY, i, j);
     }
   }
+
+  board->drawCursor(x, y);
 }
 
 void Camera::control() {

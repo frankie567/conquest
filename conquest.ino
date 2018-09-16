@@ -18,4 +18,5 @@ void loop() {
   gb.display.clear();
 
   camera->control();
+  board->handleCursor();
 }
