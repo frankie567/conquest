@@ -25,8 +25,8 @@
             "includePath": [
                 "${LOCALAPPDATA}\\Arduino15\\packages\\**",
                 "${HOMEPATH}\\Documents\\Arduino\\libraries\\**",
-                "${ProgramFiles(x86}\\Arduino\\libraries\\**",
-                "${ProgramFiles(x86}\\Arduino\\hardware\\**"
+                "${ProgramFiles(x86)}\\Arduino\\libraries\\**",
+                "${ProgramFiles(x86)}\\Arduino\\hardware\\**"
             ],
             "forcedInclude": [
             ],
