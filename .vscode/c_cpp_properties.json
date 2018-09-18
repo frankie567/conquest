@@ -5,8 +5,8 @@
             "includePath": [
                 "/Applications/Arduino.app/Contents/Java/libraries/**",
                 "/Applications/Arduino.app/Contents/Java/harware/**",
-                "/Users/francois/Library/Arduino15/packages/**",
-                "/Users/francois/Documents/Arduino/libraries/**"
+                "~/Library/Arduino15/packages/**",
+                "~/Documents/Arduino/libraries/**"
             ],
             "forcedInclude": [
             ],
