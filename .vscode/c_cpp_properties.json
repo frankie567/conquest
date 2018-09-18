@@ -19,6 +19,19 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${LOCALAPPDATA}\\Arduino15\\packages\\**",
+                "${HOMEPATH}\\Documents\\Arduino\\libraries\\**",
+                "${ProgramFiles(x86}\\Arduino\\libraries\\**",
+                "${ProgramFiles(x86}\\Arduino\\hardware\\**"
+            ],
+            "forcedInclude": [
+            ],
+            "defines": [ "ARDUINO=10806" ],  
+            "intelliSenseMode": "msvc-x64"
         }
     ],
     "version": 4
