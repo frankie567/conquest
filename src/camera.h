@@ -8,6 +8,9 @@ class Camera {
   public:
     Camera(uint8_t width, uint8_t height, Board* board);
     void move(uint16_t x, uint16_t y);
+    void shift(uint8_t incrementX, uint8_t incrementY);
+    void coordinatesMove(u_int16_t x, uint16_t y);
+    void coordinatesShift(uint8_t incrementX, uint8_t incrementY);
     void draw();
     void control();
 

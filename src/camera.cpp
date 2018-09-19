@@ -19,6 +19,18 @@ void Camera::move(uint16_t x, uint16_t y) {
   }
 }
 
+void Camera::shift(uint8_t incrementX, uint8_t incrementY) {
+  Camera::move(x + incrementX, y + incrementY);
+}
+
+void Camera::coordinatesMove(uint16_t x, uint16_t y) {
+  Camera::move(x * TILE_WIDTH, y * TILE_HEIGHT);
+}
+
+void Camera::coordinatesShift(uint8_t incrementX, uint8_t incrementY) {
+  Camera::shift(incrementX * TILE_WIDTH, incrementY * TILE_HEIGHT);
+}
+
 void Camera::draw() {
   uint16_t minTileX = x / TILE_WIDTH;
   uint16_t minTileY = y / TILE_HEIGHT;
