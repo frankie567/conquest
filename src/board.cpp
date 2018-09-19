@@ -1,6 +1,7 @@
 #include <Gamebuino-Meta.h>
 #include <stdlib.h>
 #include "board.h"
+#include "camera.h"
 #include "constants.h"
 #include "tile.h"
 
@@ -12,7 +13,6 @@ Board::Board(uint16_t width, uint16_t height): width(width), height(height) {
       tiles[x][y] = new Tile();
     }
   }
-  moveCursor(0, 0);
 }
 
 uint16_t Board::getWidth() {
@@ -27,35 +27,18 @@ Tile* Board::getTile(uint16_t x, uint16_t y) {
   return tiles[x][y];
 }
 
-void Board::moveCursor(uint16_t x, uint16_t y) {
-  if (x >= 0 && x < getWidth()) {
-    this->cursorX = x;
-  }
+void Board::draw(Camera* camera) {
+  uint16_t minTileX = camera->getX() / TILE_WIDTH;
+  uint16_t minTileY = camera->getY() / TILE_HEIGHT;
+  uint16_t maxTileX = min(camera->getMaxX() / TILE_WIDTH + 1, getWidth());
+  uint16_t maxTileY = min(camera->getMaxY() / TILE_HEIGHT + 1, getHeight());
 
-  if (y >= 0 && y < getHeight()) {
-    this->cursorY = y;
+  for (uint16_t i = minTileX; i < maxTileX; i++) {
+    for (uint16_t j = minTileY; j < maxTileY; j++) {
+      Tile* tile = getTile(i, j);
+      int8_t tileX = i * TILE_WIDTH - camera->getX();
+      int8_t tileY = j * TILE_HEIGHT - camera->getY();
+      tile->draw(tileX, tileY, i, j);
+    }
   }
-}
-
-void Board::handleCursor() {
-  if (gb.buttons.pressed(BUTTON_UP)) {
-    moveCursor(cursorX, cursorY - 1);
-  }
-
-  if (gb.buttons.pressed(BUTTON_RIGHT)) {
-    moveCursor(cursorX + 1, cursorY);
-  }
-
-  if (gb.buttons.pressed(BUTTON_LEFT)) {
-    moveCursor(cursorX - 1, cursorY);
-  }
-
-  if (gb.buttons.pressed(BUTTON_DOWN)) {
-    moveCursor(cursorX, cursorY + 1);
-  }
-}
-
-void Board::drawCursor(uint16_t cameraX, uint16_t cameraY) {
-  gb.display.setColor((gb.frameCount % 8) >= 4 ? Gamebuino_Meta::Color::white : Gamebuino_Meta::Color::black);
-  gb.display.drawRect(cursorX * TILE_WIDTH - cameraX, cursorY * TILE_HEIGHT - cameraY, TILE_WIDTH, TILE_HEIGHT);
 }
