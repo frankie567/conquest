@@ -2,7 +2,6 @@
 #define CAMERA_H
 
 #include <stdint.h>
-#include "board.h"
 
 class Camera {
   public:

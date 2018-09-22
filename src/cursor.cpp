@@ -7,12 +7,12 @@ Cursor::Cursor(Board* board): board(board) {
 }
 
 void Cursor::move(uint16_t x, uint16_t y) {
-  if (x >= 0 && x < board->getWidth()) {
+  if (x < board->getWidth()) {
     this->x = x;
   }
 
-  if (y >= 0 && y < board->getHeight()) {
-    this->x = y;
+  if (y < board->getHeight()) {
+    this->y = y;
   }
 }
 

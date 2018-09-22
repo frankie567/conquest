@@ -2,8 +2,6 @@
 #include "camera.h"
 #include "constants.h"
 
-#define CAMERAL_CONTROL_HOLD_TIME 13
-
 Camera::Camera(uint8_t screenWidth, uint8_t screenHeight, uint16_t boardWidth, uint16_t boardHeight):
   screenWidth(screenWidth), screenHeight(screenHeight), boardWidth(boardWidth), boardHeight(boardHeight) {
   x = 0;
@@ -11,11 +9,11 @@ Camera::Camera(uint8_t screenWidth, uint8_t screenHeight, uint16_t boardWidth, u
 }
 
 void Camera::move(uint16_t x, uint16_t y) {
-  if (x >= 0 && x <= boardWidth * TILE_WIDTH - screenWidth) {
+  if (x <= boardWidth * TILE_WIDTH - screenWidth) {
     this->x = x;
   }
 
-  if (y >= 0 && y <= boardHeight * TILE_HEIGHT - screenHeight) {
+  if (y <= boardHeight * TILE_HEIGHT - screenHeight) {
     this->y = y;
   }
 }

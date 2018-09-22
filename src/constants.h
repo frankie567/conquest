@@ -4,4 +4,6 @@
 #define TILE_WIDTH 16
 #define TILE_HEIGHT 16
 
+#define CAMERAL_CONTROL_HOLD_TIME 13
+
 #endif
