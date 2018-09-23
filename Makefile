@@ -12,9 +12,11 @@
 # project, except GTEST_HEADERS, which you can use in your own targets
 # but shouldn't modify.
 
+INCLUDE_DIR = include
+
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = include/googletest
+GTEST_DIR = $(INCLUDE_DIR)/googletest
 
 # Where to find user code.
 SRC_DIR = src
@@ -30,7 +32,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11 -D__TEST__
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = camera_unittest
+TESTS = unittests
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -40,6 +42,9 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 # House-keeping build targets.
 
 all : $(TESTS)
+
+test : clean $(TESTS)
+	./$(TESTS)
 
 clean :
 	rm -f $(TESTS) gtest.a gtest_main.a *.o
@@ -72,6 +77,10 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
+gamebuino-meta-mock.o : $(INCLUDE_DIR)/gamebuino-mock/*.cpp $(INCLUDE_DIR)/gamebuino-mock/*.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c \
+            $(INCLUDE_DIR)/gamebuino-mock/Gamebuino-Meta-Mock.cpp
+
 camera.o : $(SRC_DIR)/camera.cpp $(SRC_DIR)/camera.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/camera.cpp
 
@@ -79,5 +88,5 @@ camera_unittest.o : $(TEST_DIR)/camera_unittest.cpp \
                      $(SRC_DIR)/camera.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/camera_unittest.cpp
 
-camera_unittest : camera.o camera_unittest.o gtest_main.a
+unittests : camera.o camera_unittest.o gamebuino-meta-mock.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

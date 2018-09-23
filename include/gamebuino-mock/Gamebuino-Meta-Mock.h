@@ -1,3 +1,6 @@
+#ifndef _GAMEBUINO_META_MOCK_H_
+#define	_GAMEBUINO_META_MOCK_H_
+
 #include <stdint.h>
 
 namespace Gamebuino_Meta {
@@ -31,6 +34,8 @@ namespace Gamebuino_Meta {
   class Gamebuino {
     public:
       Buttons buttons;
+
+      void begin();
   };
 
 }
@@ -50,3 +55,5 @@ const Button BUTTON_MENU = Button::menu;
 const Button BUTTON_HOME = Button::home;
 const Button BUTTON_C = Button::menu;
 const Button BUTTON_D = Button::home;
+
+#endif
