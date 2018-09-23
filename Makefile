@@ -43,7 +43,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 
 all : $(TESTS)
 
-test : clean $(TESTS)
+test : $(TESTS)
 	./$(TESTS)
 
 clean :
