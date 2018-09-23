@@ -1,5 +1,5 @@
 {
     "sketch": "conquest.ino",
     "board": "gamebuino:samd:gamebuino_meta_native",
-    "port": "COM3"
+    "port": "/dev/cu.usbmodem1421"
 }

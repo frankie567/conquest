@@ -1,5 +1,4 @@
-#include <Gamebuino-Meta.h>
-#include <stdlib.h>
+#include <algorithm>
 #include "board.h"
 #include "camera.h"
 #include "constants.h"
@@ -30,8 +29,8 @@ Tile* Board::getTile(uint16_t x, uint16_t y) {
 void Board::draw(Camera* camera) {
   uint16_t minTileX = camera->getX() / TILE_WIDTH;
   uint16_t minTileY = camera->getY() / TILE_HEIGHT;
-  uint16_t maxTileX = min(camera->getMaxX() / TILE_WIDTH + 1, getWidth());
-  uint16_t maxTileY = min(camera->getMaxY() / TILE_HEIGHT + 1, getHeight());
+  uint16_t maxTileX = std::min(uint16_t(camera->getMaxX() / TILE_WIDTH + 1), getWidth());
+  uint16_t maxTileY = std::min(uint16_t(camera->getMaxY() / TILE_HEIGHT + 1), getHeight());
 
   for (uint16_t i = minTileX; i < maxTileX; i++) {
     for (uint16_t j = minTileY; j < maxTileY; j++) {
